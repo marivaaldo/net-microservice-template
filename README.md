@@ -2,43 +2,48 @@
 > A abordagem desse template segue os princípios de Clean Architecture, DDD (Domain-Driven Design) e práticas modernas de desenvolvimento de software.
 
 ## Estrutura de Projetos
+> A solução é organizada em múltiplos projetos que seguem a separação de responsabilidades, promovendo modularidade e facilidade de manutenção.
 
 ```
 ├── NetMicroserviceTemplate.API
-│   ├── Configuration
 │   ├── Endpoints
+│   ├── Extensions
 │   ├── Middlewares
+│   ├── Properties
 ├── NetMicroserviceTemplate.Application
 │   ├── Contracts
 │   ├── DTOs
-│   ├── Services
+│   ├── Exceptions
+│   ├── Extensions
 │   ├── UseCases
-│   ├── ViewModels
+│   │   ├── Customers
 ├── NetMicroserviceTemplate.Domain
 │   ├── Aggregates
 │   ├── Contracts
 │   │   └── Repositories
 │   ├── Entities
 │   ├── Events
+│   │   ├── Customers
+│   │   ├── Handlers
+│   ├── Exceptions
+│   ├── Extensions
 │   ├── Services
 │   ├── ValueObjects
 ├── NetMicroserviceTemplate.Infrastructure.Data
 │   ├── Context
 │   ├── EntityConfigurations
+│   ├── Extensions
 │   ├── Repositories
 ├── NetMicroserviceTemplate.Tests
 │   ├── IntegrationTests
 │   ├── Mocks
 │   ├── UnitTests
+└── NetMicroserviceTemplate.sln
 ```
-
-Estrutura do Projeto
-A solução é organizada em múltiplos projetos que seguem a separação de responsabilidades, promovendo modularidade e facilidade de manutenção.
 
 ## NetMicroserviceTemplate.Api
 > Projeto principal que expõe endpoints RESTful.
 
-* **Configuration**: Configurações de inicialização da aplicação (ex.: Swagger, CORS).
 * **Endpoints**: Contém os controladores da API responsáveis por receber as requisições HTTP e encaminhá-las para os use cases.
 * **Middlewares**: Implementações de middlewares para manipulação de solicitações HTTP (ex.: tratamento de erros, autenticação).
 
@@ -47,9 +52,7 @@ A solução é organizada em múltiplos projetos que seguem a separação de res
 
 * **Contracts**: Interfaces para serviços externos ou dependências, facilitando a injeção de dependências.
 * **DTOs** (Data Transfer Objects): Estruturas de dados utilizadas para transferência de informações entre camadas.
-* **Services**: Contém as implementações das `Interfaces`
 * **UseCases**: Implementações dos casos de uso que coordenam a interação entre a camada de domínio e a camada de infraestrutura.
-* **ViewModels**: Objetos utilizados especificamente em retorno de endpoints
 
 ## NetMicroserviceTemplate.Domain
 > Camada de domínio, contendo as regras de negócios principais e modelos.
@@ -61,8 +64,8 @@ A solução é organizada em múltiplos projetos que seguem a separação de res
 * **Services**: Serviços de domínio que encapsulam lógica complexa que não se encaixa diretamente em uma entidade.
 * **ValueObjects**: Objetos de valor que representam conceitos imutáveis e sem identidade única.
 
-## NetMicroserviceTemplate.Infrastructure
-> Camada que implementa a persistência de dados e integrações externas.
+## NetMicroserviceTemplate.Infrastructure.Data
+> Camada que implementa a persistência de dados.
 
 * **EntityConfigurations**: Configurações de mapeamento do Entity Framework Core.
 * **Repositories**: Implementações dos repositórios que interagem com o banco de dados.

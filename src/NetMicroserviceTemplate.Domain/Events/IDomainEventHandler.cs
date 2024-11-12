@@ -1,6 +1,8 @@
 ﻿namespace NetMicroserviceTemplate.Domain.Events;
 
-public interface IDomainEventHandler<in T> where T : DomainEvent
+public interface IDomainEventHandler<in TDomainEvent> : IDomainEventHandler where TDomainEvent : IDomainEvent
 {
-    void Handle(T domainEvent);
+    Task HandleAsync(TDomainEvent domainEvent, CancellationToken cancellationToken = default);
 }
+
+public interface IDomainEventHandler { }

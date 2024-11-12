@@ -7,6 +7,7 @@ internal class EntityRepository<T>(ApplicationContext context) : EntityRepositor
 internal class EntityRepository<TKey, T>(ApplicationContext context) : IEntityRepository<TKey, T> where T : class, IEntity<TKey>
 {
     protected readonly ApplicationContext _context = context;
+    public IUnitOfWork UnitOfWork => _context;
 
     public async Task AddAsync(T entity, CancellationToken cancellationToken = default)
     {

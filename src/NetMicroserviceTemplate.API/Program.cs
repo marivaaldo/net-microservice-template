@@ -1,3 +1,4 @@
+using NetMicroserviceTemplate.Domain.Extensions;
 using NetMicroserviceTemplate.Application.Extensions;
 using NetMicroserviceTemplate.Infrastructure.Data.Extensions;
 using NetMicroserviceTemplate.API.Extensions;
@@ -8,6 +9,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddDomainServices();
 builder.Services.AddApplicationServices(builder.Configuration);
 builder.Services.AddInfrastructureDataServices();
 
