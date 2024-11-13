@@ -34,9 +34,7 @@ internal abstract class BaseContext : DbContext, IUnitOfWork
 
     private async Task RaiseDomainEventsAsync(CancellationToken cancellationToken = default)
     {
-        var changedStates = new[] { EntityState.Modified, EntityState.Added, EntityState.Deleted };
         var domainEvents = ChangeTracker.Entries<IDomainEntity>()
-            .Where(x => changedStates.Contains(x.State))
             .SelectMany(x => x.Entity.ConsumeDomainEvents())
             .ToList();
 

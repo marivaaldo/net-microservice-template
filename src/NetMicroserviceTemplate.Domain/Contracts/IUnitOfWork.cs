@@ -1,4 +1,4 @@
-﻿namespace NetMicroserviceTemplate.Infrastructure.Data.Context;
+﻿namespace NetMicroserviceTemplate.Domain.Contracts;
 
 public interface IUnitOfWork
 {

@@ -6,6 +6,7 @@ public interface IEntityRepository<TEntity> : IEntityRepository<Guid, TEntity> w
 
 public interface IEntityRepository<TKey, TEntity> where TEntity : IEntity<TKey>
 {
+    IUnitOfWork UnitOfWork { get; }
     Task<IEnumerable<TEntity>> FindAllAsync(CancellationToken cancellationToken = default);
     Task<TEntity> FindByIdAsync(TKey id, CancellationToken cancellationToken = default);
     Task AddAsync(TEntity entity, CancellationToken cancellationToken = default);

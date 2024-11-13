@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.EntityFrameworkCore.Diagnostics;
+using Microsoft.Extensions.DependencyInjection;
 using NetMicroserviceTemplate.Infrastructure.Data.Repositories;
 
 namespace NetMicroserviceTemplate.Infrastructure.Data.Extensions;
@@ -15,7 +16,8 @@ public static class DataServicesExtensions
         .AddDbContext<ApplicationContext>(options =>
         {
             options
-                .UseInMemoryDatabase("NetMicroserviceTemplate");
+                .UseInMemoryDatabase("NetMicroserviceTemplate")
+                .ConfigureWarnings(warnings => warnings.Ignore(InMemoryEventId.TransactionIgnoredWarning));
             ;
         });
 

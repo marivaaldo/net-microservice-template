@@ -3,14 +3,14 @@ namespace NetMicroserviceTemplate.Domain.ValueObjects;
 
 public class Address
 {
-    public string Country { get; set; }
-    public string State { get; set; }
-    public string City { get; set; }
-    public string Neighborhood { get; set; }
-    public string Street { get; set; }
-    public string Number { get; set; }
-    public string Complement { get; set; }
-    public string PostalCode { get; set; }
+    public string Country { get; protected set; }
+    public string State { get; protected set; }
+    public string City { get; protected set; }
+    public string Neighborhood { get; protected set; }
+    public string Street { get; protected set; }
+    public string Number { get; protected set; }
+    public string Complement { get; protected set; }
+    public string PostalCode { get; protected set; }
 
     protected Address() { }
 

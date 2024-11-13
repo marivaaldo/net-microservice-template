@@ -17,7 +17,17 @@ internal sealed class RegisterCustomerUseCase(ICustomerRepository customerReposi
 
         var customer = new Customer(request.FullName, request.Age, request.Email, request.Address);
 
-        await _customerRepository.AddAsync(customer, cancellationToken);
+        try
+        {
+            await _customerRepository.UnitOfWork.BeginTransactionAsync(cancellationToken);
+            await _customerRepository.AddAsync(customer, cancellationToken);
+            await _customerRepository.UnitOfWork.CommitTransactionAsync(cancellationToken);
+        }
+        catch
+        {
+            await _customerRepository.UnitOfWork.RollbackTransactionAsync(cancellationToken);
+            throw;
+        }
 
         return customer.Id;
     }

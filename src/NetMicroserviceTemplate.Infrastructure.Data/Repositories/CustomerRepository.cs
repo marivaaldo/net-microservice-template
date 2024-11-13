@@ -1,4 +1,5 @@
-﻿namespace NetMicroserviceTemplate.Infrastructure.Data.Repositories;
+﻿
+namespace NetMicroserviceTemplate.Infrastructure.Data.Repositories;
 
 internal class CustomerRepository(ApplicationContext context) : EntityRepository<Customer>(context), ICustomerRepository
 {

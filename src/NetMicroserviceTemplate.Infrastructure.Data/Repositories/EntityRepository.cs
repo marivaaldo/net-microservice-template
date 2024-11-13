@@ -9,13 +9,13 @@ internal class EntityRepository<TKey, T>(ApplicationContext context) : IEntityRe
     protected readonly ApplicationContext _context = context;
     public IUnitOfWork UnitOfWork => _context;
 
-    public async Task AddAsync(T entity, CancellationToken cancellationToken = default)
+    public virtual async Task AddAsync(T entity, CancellationToken cancellationToken = default)
     {
         await _context.Set<T>().AddAsync(entity, cancellationToken);
         await _context.SaveChangesAsync(cancellationToken);
     }
 
-    public async Task DeleteAsync(TKey id, CancellationToken cancellationToken = default)
+    public virtual async Task DeleteAsync(TKey id, CancellationToken cancellationToken = default)
     {
         var entity = await FindByIdAsync(id, cancellationToken);
         if (entity == null)
@@ -24,13 +24,13 @@ internal class EntityRepository<TKey, T>(ApplicationContext context) : IEntityRe
         await _context.SaveChangesAsync(cancellationToken);
     }
 
-    public async Task<IEnumerable<T>> FindAllAsync(CancellationToken cancellationToken = default)
+    public virtual async Task<IEnumerable<T>> FindAllAsync(CancellationToken cancellationToken = default)
         => await _context.Set<T>().ToListAsync(cancellationToken);
 
-    public async Task<T> FindByIdAsync(TKey id, CancellationToken cancellationToken = default)
+    public virtual async Task<T> FindByIdAsync(TKey id, CancellationToken cancellationToken = default)
         => await _context.Set<T>().FindAsync([id], cancellationToken);
 
-    public async Task UpdateAsync(T entity, CancellationToken cancellationToken = default)
+    public virtual async Task UpdateAsync(T entity, CancellationToken cancellationToken = default)
     {
         _context.Entry(entity).State = EntityState.Detached;
         _context.Set<T>().Update(entity);

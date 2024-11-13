@@ -2,7 +2,6 @@
 using Microsoft.Extensions.DependencyInjection;
 using NetMicroserviceTemplate.Application.UseCases;
 using NetMicroserviceTemplate.Domain.Extensions;
-using System.Reflection;
 
 namespace NetMicroserviceTemplate.Application.Extensions;
 
