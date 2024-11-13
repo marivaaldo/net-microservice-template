@@ -1,6 +1,6 @@
 ﻿using NetMicroserviceTemplate.Domain.Entities;
 
-namespace NetMicroserviceTemplate.Domain.Events.Customers;
+namespace NetMicroserviceTemplate.Domain.Events.Customers.CustomerChangedAddress;
 
 public class CustomerChangedAddressEvent(Customer customer) : IDomainEvent
 {

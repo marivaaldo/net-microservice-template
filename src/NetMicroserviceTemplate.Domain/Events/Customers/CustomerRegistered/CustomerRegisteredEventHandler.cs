@@ -1,7 +1,6 @@
 ﻿using NetMicroserviceTemplate.Domain.Contracts.Repositories;
-using NetMicroserviceTemplate.Domain.Events.Customers;
 
-namespace NetMicroserviceTemplate.Domain.Events.Handlers.Customers;
+namespace NetMicroserviceTemplate.Domain.Events.Customers.CustomerRegistered;
 
 internal class CustomerRegisteredEventHandler(ICustomerRepository customerRepository) : IDomainEventHandler<CustomerRegisteredEvent>
 {

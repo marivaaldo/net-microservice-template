@@ -1,14 +1,11 @@
-﻿namespace NetMicroserviceTemplate.Application.UseCases.Customers;
+﻿
+namespace NetMicroserviceTemplate.Application.Customers.Commands.RegisterCustomer;
 
-public record CreateCustomerRequest(string FullName, int Age, string Email, Address Address);
-
-public interface IRegisterCustomerUseCase : IUseCase<CreateCustomerRequest, Guid> { }
-
-internal sealed class RegisterCustomerUseCase(ICustomerRepository customerRepository) : IRegisterCustomerUseCase
+internal class RegisterCustomerCommandHandler(ICustomerRepository customerRepository) : IRequestHandler<RegisterCustomerCommand, Guid>
 {
     private readonly ICustomerRepository _customerRepository = customerRepository;
 
-    public async Task<Guid> Execute(CreateCustomerRequest request, CancellationToken cancellationToken = default)
+    public async Task<Guid> Handle(RegisterCustomerCommand request, CancellationToken cancellationToken)
     {
         var existingCustomer = await _customerRepository.FindByEmailAsync(request.Email);
 

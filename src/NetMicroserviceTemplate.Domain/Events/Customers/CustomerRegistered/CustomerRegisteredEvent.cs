@@ -1,6 +1,6 @@
 ﻿using NetMicroserviceTemplate.Domain.Entities;
 
-namespace NetMicroserviceTemplate.Domain.Events.Customers;
+namespace NetMicroserviceTemplate.Domain.Events.Customers.CustomerRegistered;
 
 public class CustomerRegisteredEvent(Customer customer) : IDomainEvent
 {

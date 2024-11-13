@@ -12,19 +12,14 @@
 │   ├── Properties
 ├── NetMicroserviceTemplate.Application
 │   ├── Contracts
-│   ├── DTOs
 │   ├── Exceptions
 │   ├── Extensions
-│   ├── UseCases
-│   │   ├── Customers
 ├── NetMicroserviceTemplate.Domain
 │   ├── Aggregates
 │   ├── Contracts
 │   │   └── Repositories
 │   ├── Entities
 │   ├── Events
-│   │   ├── Customers
-│   │   ├── Handlers
 │   ├── Exceptions
 │   ├── Extensions
 │   ├── Services
@@ -51,8 +46,6 @@
 > Camada de aplicação que contém a lógica de orquestração dos casos de uso.
 
 * **Contracts**: Interfaces para serviços externos ou dependências, facilitando a injeção de dependências.
-* **DTOs** (Data Transfer Objects): Estruturas de dados utilizadas para transferência de informações entre camadas.
-* **UseCases**: Implementações dos casos de uso que coordenam a interação entre a camada de domínio e a camada de infraestrutura.
 
 ## NetMicroserviceTemplate.Domain
 > Camada de domínio, contendo as regras de negócios principais e modelos.

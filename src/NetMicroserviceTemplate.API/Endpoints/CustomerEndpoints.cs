@@ -1,6 +1,5 @@
-﻿
-using Microsoft.AspNetCore.Mvc;
-using NetMicroserviceTemplate.Application.UseCases.Customers;
+﻿using NetMicroserviceTemplate.Application.Customers.Commands.RegisterCustomer;
+using NetMicroserviceTemplate.Application.Customers.Queries.GetCustomers;
 
 namespace NetMicroserviceTemplate.API.Endpoints
 {
@@ -16,16 +15,16 @@ namespace NetMicroserviceTemplate.API.Endpoints
         }
 
         private async Task<IResult> GetCustomers(
-            [FromServices] IGetCustomersUseCase getCustomers,
+            [FromServices] IMediator mediator,
             CancellationToken cancellationToken = default)
-            => Results.Ok(await getCustomers.Execute(cancellationToken));
+            => Results.Ok(await mediator.Send(new GetCustomersQuery(), cancellationToken));
 
         private async Task<IResult> RegisterCustomer(
-            [FromBody] CreateCustomerRequest request,
-            [FromServices] IRegisterCustomerUseCase registerCustomer,
+            [FromBody] RegisterCustomerCommand command,
+            [FromServices] IMediator mediator,
             CancellationToken cancellationToken = default)
         {
-            var id = await registerCustomer.Execute(request);
+            var id = await mediator.Send(command, cancellationToken);
             return Results.Ok(id);
         }
     }
