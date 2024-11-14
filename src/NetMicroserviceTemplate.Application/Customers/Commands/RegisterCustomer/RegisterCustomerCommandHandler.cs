@@ -1,9 +1,12 @@
 ﻿
+using NetMicroserviceTemplate.Application.Events.Customers.CustomerRegistered;
+
 namespace NetMicroserviceTemplate.Application.Customers.Commands.RegisterCustomer;
 
-internal class RegisterCustomerCommandHandler(ICustomerRepository customerRepository) : IRequestHandler<RegisterCustomerCommand, Guid>
+internal class RegisterCustomerCommandHandler(ICustomerRepository customerRepository, IMediator mediator) : IRequestHandler<RegisterCustomerCommand, Guid>
 {
     private readonly ICustomerRepository _customerRepository = customerRepository;
+    private readonly IMediator _mediator = mediator;
 
     public async Task<Guid> Handle(RegisterCustomerCommand request, CancellationToken cancellationToken)
     {
@@ -19,6 +22,7 @@ internal class RegisterCustomerCommandHandler(ICustomerRepository customerReposi
             await _customerRepository.UnitOfWork.BeginTransactionAsync(cancellationToken);
             await _customerRepository.AddAsync(customer, cancellationToken);
             await _customerRepository.UnitOfWork.CommitTransactionAsync(cancellationToken);
+            await _mediator.Publish(new CustomerRegisteredIntegrationEvent(customer.Id), cancellationToken);
         }
         catch
         {
