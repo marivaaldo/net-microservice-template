@@ -4,7 +4,7 @@ using System.Reflection;
 
 namespace NetMicroserviceTemplate.Infrastructure.Data.Context;
 
-internal abstract class BaseContext : DbContext, IUnitOfWork
+internal abstract class BaseContext : DbContext, IBaseContext, IUnitOfWork
 {
     private IDbContextTransaction _transaction;
     private readonly IDomainEventDispatcher _domainEventDispatcher;

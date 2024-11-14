@@ -7,7 +7,6 @@
 
     <IsPackable>false</IsPackable>
     <IsTestProject>true</IsTestProject>
-	<EnableCodeCoverage>true</EnableCodeCoverage>
   </PropertyGroup>
 
   <ItemGroup>
@@ -17,6 +16,7 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.8.0" />
+    <PackageReference Include="Moq" Version="4.20.72" />
     <PackageReference Include="xunit" Version="2.5.3" />
     <PackageReference Include="xunit.runner.visualstudio" Version="2.5.3" />
   </ItemGroup>
@@ -27,11 +27,12 @@
 
   <ItemGroup>
     <Folder Include="IntegrationTests\" />
-    <Folder Include="Mocks\" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\NetMicroserviceTemplate.Application\NetMicroserviceTemplate.Application.csproj" />
     <ProjectReference Include="..\NetMicroserviceTemplate.Domain\NetMicroserviceTemplate.Domain.csproj" />
+    <ProjectReference Include="..\NetMicroserviceTemplate.Infrastructure.Data\NetMicroserviceTemplate.Infrastructure.Data.csproj" />
   </ItemGroup>
 
 </Project>

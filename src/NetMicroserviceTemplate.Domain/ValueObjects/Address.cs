@@ -1,6 +1,9 @@
 ﻿
+using System.Diagnostics.CodeAnalysis;
+
 namespace NetMicroserviceTemplate.Domain.ValueObjects;
 
+[ExcludeFromCodeCoverage]
 public class Address
 {
     public string Country { get; protected set; }

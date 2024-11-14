@@ -1,8 +1,10 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using NetMicroserviceTemplate.Domain.Events;
+using System.Diagnostics.CodeAnalysis;
 
 namespace NetMicroserviceTemplate.Domain.Extensions;
 
+[ExcludeFromCodeCoverage]
 public static class DomainServicesExtensions
 {
     public static IServiceCollection AddDomainServices(this IServiceCollection services)

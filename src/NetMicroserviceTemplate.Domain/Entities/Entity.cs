@@ -6,7 +6,7 @@ public abstract class Entity : Entity<Guid>, IEntity { }
 
 public abstract class Entity<TKey> : IEntity<TKey>
 {
-    private readonly List<IDomainEvent> _domainEvents = [];
+    protected readonly List<IDomainEvent> _domainEvents = [];
 
     public TKey Id { get; protected set; }
 

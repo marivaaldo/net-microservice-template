@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using System.Diagnostics.CodeAnalysis;
 
 namespace NetMicroserviceTemplate.Domain.Events;
 
@@ -7,6 +8,7 @@ public interface IDomainEventDispatcher
     Task DispatchAsync(IEnumerable<IDomainEvent> domainEvents, CancellationToken cancellationToken = default);
 }
 
+[ExcludeFromCodeCoverage]
 public class DomainEventDispatcher(IServiceProvider serviceProvider) : IDomainEventDispatcher
 {
     private readonly IServiceProvider _serviceProvider = serviceProvider;

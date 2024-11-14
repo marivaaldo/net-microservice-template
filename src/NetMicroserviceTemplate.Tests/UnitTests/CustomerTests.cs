@@ -1,8 +1,6 @@
-﻿using NetMicroserviceTemplate.Domain.ValueObjects;
+﻿namespace NetMicroserviceTemplate.Tests.UnitTests;
 
-namespace NetMicroserviceTemplate.Tests.UnitTests;
-
-public class Customer_UnitTest
+public class CustomerTests
 {
     [Theory]
     [InlineData("name", 30, "email", "brasil")]
@@ -17,11 +15,11 @@ public class Customer_UnitTest
     {
         if (string.IsNullOrWhiteSpace(fullName) || age < 18 || string.IsNullOrWhiteSpace(email) || string.IsNullOrWhiteSpace(addressCountry))
         {
-            Assert.Throws<DomainException>(() => NewCustomer(fullName, age, email, string.IsNullOrWhiteSpace(addressCountry) ? null : NewAddress(addressCountry)));
+            Assert.Throws<DomainException>(() => Mocks.Customer.New(fullName, age, email, string.IsNullOrWhiteSpace(addressCountry) ? null : Mocks.Address.New(addressCountry)));
         }
         else
         {
-            var customer = new Customer(fullName, age, email, NewAddress(addressCountry));
+            var customer = Mocks.Customer.New(fullName, age, email, Mocks.Address.New(addressCountry));
             Assert.NotNull(customer);
         }
     }
@@ -29,7 +27,7 @@ public class Customer_UnitTest
     [Fact]
     public void ChangeAddress()
     {
-        var customer = NewCustomer("name", 18, "mail@domain.com", NewAddress("brasil"));
+        var customer = Mocks.Customer.New("name", 18, "mail@domain.com", Mocks.Address.New("brasil"));
 
         Assert.Throws<DomainException>(() => customer.ChangeAddress(null));
 
@@ -37,13 +35,7 @@ public class Customer_UnitTest
         customer.ChangeAddress(customer.Address);
         Assert.Equal(currentAddress, customer.Address);
 
-        customer.ChangeAddress(NewAddress("eua"));
+        customer.ChangeAddress(Mocks.Address.New("EUA"));
         Assert.NotEqual(currentAddress, customer.Address);
     }
-
-    private static Customer NewCustomer(string fullName = "", int age = -1, string email = "", Address address = null)
-        => new Customer(fullName, age, email, address ?? NewAddress());
-
-    private static Address NewAddress(string country = "", string state = "", string city = "", string neighborhood = "", string street = "", string number = "", string complement = "", string postalCode = "")
-        => new Address(country, state, city, neighborhood, street, number, complement, postalCode);
 }

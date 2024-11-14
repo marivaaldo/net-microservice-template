@@ -13,7 +13,7 @@ public static class DataServicesExtensions
 
     private static IServiceCollection AddContext(this IServiceCollection services)
         => services
-        .AddDbContext<ApplicationContext>(options =>
+        .AddDbContext<IApplicationContext, ApplicationContext>(options =>
         {
             options
                 .UseInMemoryDatabase("NetMicroserviceTemplate")
