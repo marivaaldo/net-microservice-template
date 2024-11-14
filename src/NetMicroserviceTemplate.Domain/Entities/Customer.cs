@@ -30,6 +30,9 @@ public class Customer : Entity
         if (Age < 18)
             throw new DomainException("Age can't less than 18 years");
 
+        if (Address == null)
+            throw new DomainException("Address cannot be null");
+
         AddDomainEvent(new CustomerRegisteredEvent(Id));
     }
 

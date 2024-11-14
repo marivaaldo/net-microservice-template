@@ -1,5 +1,4 @@
-﻿
-using NetMicroserviceTemplate.Application.Events.Customers.CustomerRegistered;
+﻿using NetMicroserviceTemplate.Application.Events.Customers.CustomerRegistered;
 
 namespace NetMicroserviceTemplate.Application.Customers.Commands.RegisterCustomer;
 
