@@ -18,7 +18,6 @@ public static class DataServicesExtensions
             options
                 .UseInMemoryDatabase("NetMicroserviceTemplate")
                 .ConfigureWarnings(warnings => warnings.Ignore(InMemoryEventId.TransactionIgnoredWarning));
-            ;
         });
 
     private static IServiceCollection AddRepositories(this IServiceCollection services)

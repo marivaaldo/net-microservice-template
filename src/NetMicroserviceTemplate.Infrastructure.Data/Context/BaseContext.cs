@@ -11,8 +11,8 @@ internal abstract class BaseContext : DbContext, IUnitOfWork
 
     public BaseContext(DbContextOptions<ApplicationContext> options, IDomainEventDispatcher domainEventDispatcher) : base(options)
     {
-        _domainEventDispatcher = domainEventDispatcher;
         ChangeTracker.QueryTrackingBehavior = QueryTrackingBehavior.NoTracking;
+        _domainEventDispatcher = domainEventDispatcher;
     }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -22,20 +22,23 @@ internal abstract class BaseContext : DbContext, IUnitOfWork
 
     public override int SaveChanges(bool acceptAllChangesOnSuccess)
     {
+        var result = base.SaveChanges(acceptAllChangesOnSuccess);
         RaiseDomainEventsAsync().Wait();
-        return base.SaveChanges(acceptAllChangesOnSuccess);
+        return result;
     }
 
     public override async Task<int> SaveChangesAsync(bool acceptAllChangesOnSuccess, CancellationToken cancellationToken = default)
     {
+        var result = await base.SaveChangesAsync(acceptAllChangesOnSuccess, cancellationToken);
         await RaiseDomainEventsAsync(cancellationToken);
-        return await base.SaveChangesAsync(acceptAllChangesOnSuccess, cancellationToken);
+        return result;
     }
 
     private async Task RaiseDomainEventsAsync(CancellationToken cancellationToken = default)
     {
         var domainEvents = ChangeTracker.Entries<IDomainEntity>()
             .SelectMany(x => x.Entity.ConsumeDomainEvents())
+            .OrderBy(x => x.OccurredOn)
             .ToList();
 
         await _domainEventDispatcher.DispatchAsync(domainEvents, cancellationToken);

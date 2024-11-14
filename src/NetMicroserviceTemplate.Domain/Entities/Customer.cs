@@ -1,4 +1,5 @@
-﻿using NetMicroserviceTemplate.Domain.Events.Customers;
+﻿using NetMicroserviceTemplate.Domain.Events.Customers.CustomerChangedAddress;
+using NetMicroserviceTemplate.Domain.Events.Customers.CustomerRegistered;
 using NetMicroserviceTemplate.Domain.ValueObjects;
 
 namespace NetMicroserviceTemplate.Domain.Entities;
@@ -29,7 +30,7 @@ public class Customer : Entity
         if (Age < 18)
             throw new DomainException("Age can't less than 18 years");
 
-        AddDomainEvent(new CustomerRegisteredEvent(this));
+        AddDomainEvent(new CustomerRegisteredEvent(Id));
     }
 
     public void ChangeAddress(Address address)
@@ -42,6 +43,6 @@ public class Customer : Entity
 
         Address = address;
 
-        AddDomainEvent(new CustomerChangedAddressEvent(this));
+        AddDomainEvent(new CustomerChangedAddressEvent(Id));
     }
 }

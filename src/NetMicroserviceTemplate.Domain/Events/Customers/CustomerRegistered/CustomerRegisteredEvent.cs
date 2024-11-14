@@ -1,10 +1,6 @@
-﻿using NetMicroserviceTemplate.Domain.Entities;
+﻿namespace NetMicroserviceTemplate.Domain.Events.Customers.CustomerRegistered;
 
-namespace NetMicroserviceTemplate.Domain.Events.Customers.CustomerRegistered;
-
-public class CustomerRegisteredEvent(Customer customer) : IDomainEvent
+public class CustomerRegisteredEvent(Guid customerId) : DomainEvent
 {
-    public Guid Id { get; } = Guid.NewGuid();
-    public DateTime OccurredOn { get; } = DateTime.UtcNow;
-    public Customer Customer { get; } = customer ?? throw new DomainException("Customer cannot be null");
+    public Guid CustomerId { get; } = customerId;
 }

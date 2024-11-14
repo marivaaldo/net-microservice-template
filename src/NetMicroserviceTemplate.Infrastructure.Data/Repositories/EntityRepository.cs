@@ -32,7 +32,6 @@ internal class EntityRepository<TKey, T>(ApplicationContext context) : IEntityRe
 
     public virtual async Task UpdateAsync(T entity, CancellationToken cancellationToken = default)
     {
-        _context.Entry(entity).State = EntityState.Detached;
         _context.Set<T>().Update(entity);
         await _context.SaveChangesAsync(cancellationToken);
     }
