@@ -1,6 +1,3 @@
-using NetMicroserviceTemplate.Domain.Extensions;
-using NetMicroserviceTemplate.Application.Extensions;
-using NetMicroserviceTemplate.Infrastructure.Data.Extensions;
 using NetMicroserviceTemplate.API.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);

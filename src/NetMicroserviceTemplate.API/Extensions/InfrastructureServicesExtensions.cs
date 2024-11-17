@@ -1,10 +1,12 @@
-﻿using Microsoft.EntityFrameworkCore.Diagnostics;
-using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Diagnostics;
+using NetMicroserviceTemplate.Domain.Contracts.Repositories;
+using NetMicroserviceTemplate.Infrastructure.Data.Context;
 using NetMicroserviceTemplate.Infrastructure.Data.Repositories;
 
-namespace NetMicroserviceTemplate.Infrastructure.Data.Extensions;
+namespace NetMicroserviceTemplate.API.Extensions;
 
-public static class DataServicesExtensions
+public static class InfrastructureServicesExtensions
 {
     public static IServiceCollection AddInfrastructureDataServices(this IServiceCollection services)
         => services
@@ -21,7 +23,7 @@ public static class DataServicesExtensions
         });
 
     private static IServiceCollection AddRepositories(this IServiceCollection services)
-        => services
+    => services
         .AddScoped<ICustomerRepository, CustomerRepository>()
         .AddScoped(typeof(IEntityRepository<>), typeof(EntityRepository<>))
         .AddScoped(typeof(IEntityRepository<,>), typeof(EntityRepository<,>));

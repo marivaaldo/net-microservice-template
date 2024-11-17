@@ -1,6 +1,6 @@
 ﻿namespace NetMicroserviceTemplate.Infrastructure.Data.Context;
 
-internal interface IBaseContext : IUnitOfWork
+public interface IBaseContext : IUnitOfWork
 {
     DbSet<TEntity> Set<TEntity>() where TEntity : class;
     Task<int> SaveChangesAsync(bool acceptAllChangesOnSuccess, CancellationToken cancellationToken = default);

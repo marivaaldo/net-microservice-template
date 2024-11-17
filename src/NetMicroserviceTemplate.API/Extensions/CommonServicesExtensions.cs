@@ -1,20 +1,7 @@
-﻿using Microsoft.Extensions.DependencyInjection;
-using NetMicroserviceTemplate.Domain.Events;
-using System.Diagnostics.CodeAnalysis;
+﻿namespace NetMicroserviceTemplate.API.Extensions;
 
-namespace NetMicroserviceTemplate.Domain.Extensions;
-
-[ExcludeFromCodeCoverage]
-public static class DomainServicesExtensions
+public static class CommonServicesExtensions
 {
-    public static IServiceCollection AddDomainServices(this IServiceCollection services)
-        => services
-            .AddScoped<IDomainEventDispatcher, DomainEventDispatcher>()
-            .AddEventHandlers();
-
-    private static IServiceCollection AddEventHandlers(this IServiceCollection services)
-        => services.AddImplementationsOf(typeof(IDomainEventHandler));
-
     public static IServiceCollection AddImplementationsOf<TInterface>(this IServiceCollection services)
         => services.AddImplementationsOf(typeof(TInterface));
 

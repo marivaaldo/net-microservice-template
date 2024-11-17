@@ -1,10 +1,10 @@
 ﻿namespace NetMicroserviceTemplate.Infrastructure.Data.Repositories;
 
-internal class EntityRepository<T>(IApplicationContext context) : EntityRepository<Guid, T>(context) where T : class, IEntity
+public class EntityRepository<T>(IApplicationContext context) : EntityRepository<Guid, T>(context) where T : class, IEntity
 {
 }
 
-internal class EntityRepository<TKey, T>(IApplicationContext context) : IEntityRepository<TKey, T> where T : class, IEntity<TKey>
+public class EntityRepository<TKey, T>(IApplicationContext context) : IEntityRepository<TKey, T> where T : class, IEntity<TKey>
 {
     protected readonly IApplicationContext _context = context;
     public virtual IUnitOfWork UnitOfWork => _context;
