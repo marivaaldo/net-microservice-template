@@ -11,7 +11,8 @@ public abstract class BaseContext : DbContext, IBaseContext, IUnitOfWork
 
     public BaseContext(DbContextOptions<ApplicationContext> options, IDomainEventDispatcher domainEventDispatcher) : base(options)
     {
-        ChangeTracker.QueryTrackingBehavior = QueryTrackingBehavior.NoTracking;
+        if (ChangeTracker != null)
+            ChangeTracker.QueryTrackingBehavior = QueryTrackingBehavior.NoTracking;
         _domainEventDispatcher = domainEventDispatcher;
     }
 

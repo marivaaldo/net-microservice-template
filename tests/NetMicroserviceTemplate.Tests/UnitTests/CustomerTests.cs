@@ -7,7 +7,7 @@ public class CustomerTests
     [InlineData("name", 18, "email", "brasil")]
     public void Constructor(string fullName, int age, string email, string addressCountry)
     {
-        var customer = Mocks.Customer.New(fullName, age, email, Mocks.Address.New(addressCountry));
+        var customer = Mocks.CustomerFake.New(fullName, age, email, Mocks.AddressFake.New(addressCountry));
         Assert.NotNull(customer);
     }
 
@@ -20,13 +20,13 @@ public class CustomerTests
     [InlineData("name", 17, "email", "brasil")]
     public void ConstructorExceptions(string fullName, int age, string email, string addressCountry)
     {
-        Assert.Throws<DomainException>(() => Mocks.Customer.New(fullName, age, email, string.IsNullOrWhiteSpace(addressCountry) ? null : Mocks.Address.New(addressCountry)));
+        Assert.Throws<DomainException>(() => Mocks.CustomerFake.New(fullName, age, email, string.IsNullOrWhiteSpace(addressCountry) ? null : Mocks.AddressFake.New(addressCountry)));
     }
 
     [Fact]
     public void ChangeAddress()
     {
-        var customer = Mocks.Customer.New("name", 18, "mail@domain.com", Mocks.Address.New("brasil"));
+        var customer = Mocks.CustomerFake.New("name", 18, "mail@domain.com", Mocks.AddressFake.New("brasil"));
 
         Assert.Throws<DomainException>(() => customer.ChangeAddress(null));
 
@@ -34,7 +34,7 @@ public class CustomerTests
         customer.ChangeAddress(customer.Address);
         Assert.Equal(currentAddress, customer.Address);
 
-        customer.ChangeAddress(Mocks.Address.New("EUA"));
+        customer.ChangeAddress(Mocks.AddressFake.New("EUA"));
         Assert.NotEqual(currentAddress, customer.Address);
     }
 }

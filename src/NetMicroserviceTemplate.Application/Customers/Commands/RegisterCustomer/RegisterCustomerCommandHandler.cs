@@ -9,9 +9,9 @@ internal class RegisterCustomerCommandHandler(ICustomerRepository customerReposi
 
     public async Task<Guid> Handle(RegisterCustomerCommand request, CancellationToken cancellationToken)
     {
-        var existingCustomer = await _customerRepository.FindByEmailAsync(request.Email);
+        var existingCustomer = _customerRepository.FindByEmail(request.Email);
 
-        if (existingCustomer != null)
+        if (existingCustomer != null && existingCustomer.Any())
             throw new BusinessException("E-mail registered by another customer");
 
         var customer = new Customer(request.FullName, request.Age, request.Email, request.Address);
@@ -19,7 +19,8 @@ internal class RegisterCustomerCommandHandler(ICustomerRepository customerReposi
         try
         {
             await _customerRepository.UnitOfWork.BeginTransactionAsync(cancellationToken);
-            await _customerRepository.InsertAync(customer, cancellationToken);
+            await _customerRepository.InsertAsync(customer, cancellationToken);
+            await _customerRepository.UnitOfWork.CompleteAsync(cancellationToken);
             await _customerRepository.UnitOfWork.CommitTransactionAsync(cancellationToken);
             await _mediator.Publish(new CustomerRegisteredIntegrationEvent(customer.Id), cancellationToken);
         }

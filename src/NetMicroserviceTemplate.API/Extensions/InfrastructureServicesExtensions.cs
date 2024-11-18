@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Diagnostics;
 using NetMicroserviceTemplate.Domain.Contracts.Repositories;
+using NetMicroserviceTemplate.Domain.Entities;
 using NetMicroserviceTemplate.Infrastructure.Data.Context;
 using NetMicroserviceTemplate.Infrastructure.Data.Repositories;
 
@@ -23,8 +24,6 @@ public static class InfrastructureServicesExtensions
         });
 
     private static IServiceCollection AddRepositories(this IServiceCollection services)
-    => services
-        .AddScoped<ICustomerRepository, CustomerRepository>()
-        .AddScoped(typeof(IEntityRepository<>), typeof(EntityRepository<>))
-        .AddScoped(typeof(IEntityRepository<,>), typeof(EntityRepository<,>));
+        => services
+            .AddEntityRepository<ICustomerRepository, UnitOfWorkRepository<Customer>, ApplicationContext>();
 }

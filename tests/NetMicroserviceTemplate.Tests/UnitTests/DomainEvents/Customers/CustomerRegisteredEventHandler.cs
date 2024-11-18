@@ -11,7 +11,7 @@ namespace NetMicroserviceTemplate.Tests.UnitTests.DomainEvents.Customers
             // Arrange
             var customerRepositoryMock = new Mock<ICustomerRepository>();
             var customer = new Customer("John Doe", 30, "john.doe@example.com", new Address("USA", "State", "City", "Neighborhood", "Street", "Number", "Complement", "PostalCode"));
-            customerRepositoryMock.Setup(r => r.FindByIdAsync(It.IsAny<Guid>(), It.IsAny<CancellationToken>()))
+            customerRepositoryMock.Setup(r => r.FindOneAsync(It.IsAny<Guid>(), It.IsAny<CancellationToken>()))
                 .ReturnsAsync(customer);
 
             var customerRegisteredEvent = new CustomerRegisteredEvent(customer.Id);
@@ -21,8 +21,8 @@ namespace NetMicroserviceTemplate.Tests.UnitTests.DomainEvents.Customers
             await customerRegisteredEventHandler.HandleAsync(customerRegisteredEvent, CancellationToken.None);
 
             // Assert
-            customerRepositoryMock.Verify(r => r.FindByIdAsync(It.IsAny<Guid>(), It.IsAny<CancellationToken>()), Times.Once);
-            customerRepositoryMock.Verify(r => r.UpdateAsync(It.IsAny<Customer>(), It.IsAny<CancellationToken>()), Times.Once);
+            customerRepositoryMock.Verify(r => r.FindOneAsync(It.IsAny<Guid>(), It.IsAny<CancellationToken>()), Times.Once);
+            customerRepositoryMock.Verify(r => r.SaveAsync(It.IsAny<Customer>(), It.IsAny<CancellationToken>()), Times.Once);
         }
 
         [Fact]
@@ -30,7 +30,7 @@ namespace NetMicroserviceTemplate.Tests.UnitTests.DomainEvents.Customers
         {
             // Arrange
             var customerRepositoryMock = new Mock<ICustomerRepository>();
-            customerRepositoryMock.Setup(r => r.FindByIdAsync(It.IsAny<Guid>(), It.IsAny<CancellationToken>()))
+            customerRepositoryMock.Setup(r => r.FindOneAsync(It.IsAny<Guid>(), It.IsAny<CancellationToken>()))
                 .Throws<Exception>();
 
             var customerRegisteredEvent = new CustomerRegisteredEvent(Guid.NewGuid());

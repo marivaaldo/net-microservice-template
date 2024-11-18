@@ -10,7 +10,7 @@ internal class CustomerRegisteredEventHandler(ICustomerRepository customerReposi
     public async Task HandleAsync(CustomerRegisteredEvent domainEvent, CancellationToken cancellationToken = default)
     {
         // TODO Do something...
-        var registeredCustomer = await _customerRepository.FindByIdAsync(domainEvent.CustomerId, cancellationToken);
+        var registeredCustomer = await _customerRepository.FindOneAsync(domainEvent.CustomerId, cancellationToken);
 
         registeredCustomer.ChangeAddress(new Address(
             registeredCustomer.Address.Country + "_changed",
@@ -22,6 +22,6 @@ internal class CustomerRegisteredEventHandler(ICustomerRepository customerReposi
             registeredCustomer.Address.Complement,
             registeredCustomer.Address.PostalCode));
 
-        await _customerRepository.UpdateAsync(registeredCustomer, cancellationToken);
+        await _customerRepository.SaveAsync(registeredCustomer, cancellationToken);
     }
 }
