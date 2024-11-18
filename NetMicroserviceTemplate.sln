@@ -3,15 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.11.35327.3
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NetMicroserviceTemplate.Domain", "NetMicroserviceTemplate.Domain\NetMicroserviceTemplate.Domain.csproj", "{B7E372CA-6291-499F-BC9A-2BE4DA08BF52}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NetMicroserviceTemplate.Domain", "src\NetMicroserviceTemplate.Domain\NetMicroserviceTemplate.Domain.csproj", "{B7E372CA-6291-499F-BC9A-2BE4DA08BF52}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NetMicroserviceTemplate.Application", "NetMicroserviceTemplate.Application\NetMicroserviceTemplate.Application.csproj", "{6C70EB80-9A69-4A98-9FEA-F51CE4382B06}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NetMicroserviceTemplate.Application", "src\NetMicroserviceTemplate.Application\NetMicroserviceTemplate.Application.csproj", "{6C70EB80-9A69-4A98-9FEA-F51CE4382B06}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NetMicroserviceTemplate.Infrastructure.Data", "NetMicroserviceTemplate.Infrastructure.Data\NetMicroserviceTemplate.Infrastructure.Data.csproj", "{680FA148-AE11-4FA6-B2C1-1CD0B7F629E1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NetMicroserviceTemplate.Infrastructure.Data", "src\NetMicroserviceTemplate.Infrastructure.Data\NetMicroserviceTemplate.Infrastructure.Data.csproj", "{680FA148-AE11-4FA6-B2C1-1CD0B7F629E1}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NetMicroserviceTemplate.API", "NetMicroserviceTemplate.API\NetMicroserviceTemplate.API.csproj", "{733ACFC4-EBAB-4C21-8A83-B9F354BAB51F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NetMicroserviceTemplate.API", "src\NetMicroserviceTemplate.API\NetMicroserviceTemplate.API.csproj", "{733ACFC4-EBAB-4C21-8A83-B9F354BAB51F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetMicroserviceTemplate.Tests", "NetMicroserviceTemplate.Tests\NetMicroserviceTemplate.Tests.csproj", "{985E5ED2-6920-4697-A6DF-D197C7510E6D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetMicroserviceTemplate.Tests", "tests\NetMicroserviceTemplate.Tests\NetMicroserviceTemplate.Tests.csproj", "{985E5ED2-6920-4697-A6DF-D197C7510E6D}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{3B0B6FA8-0BD8-4888-BEF7-4BEECE1EE22D}"
 	ProjectSection(SolutionItems) = preProject

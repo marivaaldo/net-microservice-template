@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
 	<PropertyGroup>
 		<TargetFramework>net8.0</TargetFramework>
@@ -15,12 +15,12 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\NetMicroserviceTemplate.Application\NetMicroserviceTemplate.Application.csproj" />
-		<ProjectReference Include="..\NetMicroserviceTemplate.Infrastructure.Data\NetMicroserviceTemplate.Infrastructure.Data.csproj" />
+		<Folder Include="Middlewares\" />
 	</ItemGroup>
 
 	<ItemGroup>
-		<Folder Include="Middlewares\" />
+	  <ProjectReference Include="..\NetMicroserviceTemplate.Application\NetMicroserviceTemplate.Application.csproj" />
+	  <ProjectReference Include="..\NetMicroserviceTemplate.Infrastructure.Data\NetMicroserviceTemplate.Infrastructure.Data.csproj" />
 	</ItemGroup>
 
 </Project>

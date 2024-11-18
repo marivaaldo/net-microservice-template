@@ -19,7 +19,7 @@ internal class RegisterCustomerCommandHandler(ICustomerRepository customerReposi
         try
         {
             await _customerRepository.UnitOfWork.BeginTransactionAsync(cancellationToken);
-            await _customerRepository.AddAsync(customer, cancellationToken);
+            await _customerRepository.InsertAync(customer, cancellationToken);
             await _customerRepository.UnitOfWork.CommitTransactionAsync(cancellationToken);
             await _mediator.Publish(new CustomerRegisteredIntegrationEvent(customer.Id), cancellationToken);
         }

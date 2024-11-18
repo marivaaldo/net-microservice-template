@@ -30,9 +30,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\NetMicroserviceTemplate.Application\NetMicroserviceTemplate.Application.csproj" />
-    <ProjectReference Include="..\NetMicroserviceTemplate.Domain\NetMicroserviceTemplate.Domain.csproj" />
-    <ProjectReference Include="..\NetMicroserviceTemplate.Infrastructure.Data\NetMicroserviceTemplate.Infrastructure.Data.csproj" />
+    <ProjectReference Include="..\..\src\NetMicroserviceTemplate.Application\NetMicroserviceTemplate.Application.csproj" />
+    <ProjectReference Include="..\..\src\NetMicroserviceTemplate.Domain\NetMicroserviceTemplate.Domain.csproj" />
+    <ProjectReference Include="..\..\src\NetMicroserviceTemplate.Infrastructure.Data\NetMicroserviceTemplate.Infrastructure.Data.csproj" />
   </ItemGroup>
 
 </Project>

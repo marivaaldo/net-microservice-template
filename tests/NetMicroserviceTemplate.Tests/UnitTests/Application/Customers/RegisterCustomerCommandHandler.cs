@@ -1,7 +1,7 @@
 ﻿using MediatR;
 using NetMicroserviceTemplate.Application.Customers.Commands.RegisterCustomer;
 using NetMicroserviceTemplate.Application.Exceptions;
-using NetMicroserviceTemplate.Domain.Contracts;
+using NetMicroserviceTemplate.Domain.Contracts.Repositories;
 using NetMicroserviceTemplate.Infrastructure.Data.Context;
 using NetMicroserviceTemplate.Infrastructure.Data.Repositories;
 
@@ -42,7 +42,7 @@ public class RegisterCustomerCommandHandlerTests
 
         // Assert
         _customerRepositoryMock.Verify(r => r.FindByEmailAsync(command.Email), Times.Once);
-        _customerRepositoryMock.Verify(r => r.AddAsync(It.IsAny<Customer>(), CancellationToken.None), Times.Once);
+        _customerRepositoryMock.Verify(r => r.InsertAync(It.IsAny<Customer>(), CancellationToken.None), Times.Once);
         _customerRepositoryMock.Verify(r => r.UnitOfWork.CommitTransactionAsync(CancellationToken.None), Times.Once);
         _customerRepositoryMock.Verify(r => r.UnitOfWork.RollbackTransactionAsync(CancellationToken.None), Times.Never);
         Assert.NotNull(result);
