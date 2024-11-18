@@ -10,14 +10,15 @@ namespace NetMicroserviceTemplate.API.Endpoints
 
         public void Map(RouteGroupBuilder group)
         {
-            group.MapGet("/", GetCustomers);
+            group.MapPost("/search", GetCustomers);
             group.MapPost("/", RegisterCustomer);
         }
 
         private async Task<IResult> GetCustomers(
+            [FromBody] GetCustomersQuery query,
             [FromServices] IMediator mediator,
             CancellationToken cancellationToken = default)
-            => Results.Ok(await mediator.Send(new GetCustomersQuery(), cancellationToken));
+            => Results.Ok(await mediator.Send(query, cancellationToken));
 
         private async Task<IResult> RegisterCustomer(
             [FromBody] RegisterCustomerCommand command,

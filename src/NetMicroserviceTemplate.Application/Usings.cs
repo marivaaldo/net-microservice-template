@@ -10,3 +10,5 @@ global using NetMicroserviceTemplate.Domain.Contracts.Repositories;
 global using NetMicroserviceTemplate.Domain.Entities;
 global using NetMicroserviceTemplate.Domain.ValueObjects;
 global using NetMicroserviceTemplate.Application.Exceptions;
+global using NetMicroserviceTemplate.Application.Extensions;
+global using NetMicroserviceTemplate.Application.Util;
